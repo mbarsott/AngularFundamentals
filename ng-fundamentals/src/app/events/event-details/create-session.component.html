@@ -7,7 +7,7 @@
     (ngSubmit)="saveSession(newSessionForm.value)"
     autocomplete="off"
   >
-    <div class="form-group" [ngClass]="{'error': name.invalid && name.dirty}">
+    <div class="form-group" [ngClass]="{ error: name.invalid && name.dirty }">
       <label for="sessionName">Session Name:</label>
       <em *ngIf="name.invalid && name.dirty">Required</em>
       <input
@@ -18,7 +18,10 @@
         placeholder="session name..."
       />
     </div>
-    <div class="form-group" [ngClass]="{'error': presenter.invalid && presenter.dirty}">
+    <div
+      class="form-group"
+      [ngClass]="{ error: presenter.invalid && presenter.dirty }"
+    >
       <label for="presenter">Presenter:</label>
       <em *ngIf="presenter.invalid && presenter.dirty">Required</em>
       <input
@@ -29,7 +32,10 @@
         placeholder="presenter..."
       />
     </div>
-    <div class="form-group" [ngClass]="{'error': duration.invalid && duration.dirty}">
+    <div
+      class="form-group"
+      [ngClass]="{ error: duration.invalid && duration.dirty }"
+    >
       <label for="duration">Duration:</label>
       <em *ngIf="duration.invalid && duration.dirty">Required</em>
       <select formControlName="duration" class="form-control">
@@ -40,7 +46,7 @@
         <option value="4">Full Day</option>
       </select>
     </div>
-    <div class="form-group" [ngClass]="{'error': level.invalid && level.dirty}">
+    <div class="form-group" [ngClass]="{ error: level.invalid && level.dirty }">
       <label for="level">Level:</label>
       <em *ngIf="level.invalid && level.dirty">Required</em>
       <select formControlName="level" class="form-control">
@@ -50,10 +56,25 @@
         <option value="Advanced">Advanced</option>
       </select>
     </div>
-    <div class="form-group" [ngClass]="{'error': abstract.invalid && abstract.dirty}">
+    <div
+      class="form-group"
+      [ngClass]="{ error: abstract.invalid && abstract.dirty }"
+    >
       <label for="abstract">Abstract:</label>
-      <em *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.required">Required</em>
-      <em *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.maxlength">Cannot exceed 400 characters</em>
+      <em
+        *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.required"
+        >Required</em
+      >
+      <em
+        *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.maxlength"
+        >Cannot exceed 400 characters</em
+      >
+      <em
+        *ngIf="
+          abstract.invalid && abstract.dirty && abstract?.errors.restrictedWords
+         "
+        >Restricted words found: {{ abstract.errors.restrictedWords }}</em
+      >
       <textarea
         formControlName="abstract"
         id="abstract"
@@ -62,7 +83,13 @@
         placeholder="abstract..."
       ></textarea>
     </div>
-    <button type="submit" [disabled]="newSessionForm.invalid" class="btn btn-primary">Save</button>
+    <button
+      type="submit"
+      [disabled]="newSessionForm.invalid"
+      class="btn btn-primary"
+    >
+      Save
+    </button>
     <button type="button" class="btn btn-default">Cancel</button>
   </form>
 </div>
