@@ -72,7 +72,7 @@
       <em
         *ngIf="
           abstract.invalid && abstract.dirty && abstract?.errors.restrictedWords
-         "
+        "
         >Restricted words found: {{ abstract.errors.restrictedWords }}</em
       >
       <textarea
@@ -90,6 +90,8 @@
     >
       Save
     </button>
-    <button type="button" class="btn btn-default">Cancel</button>
+    <button type="button" (click)="cancel()" class="btn btn-default">
+      Cancel
+    </button>
   </form>
 </div>
