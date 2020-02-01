@@ -16,14 +16,21 @@ import {
 } from "./events/index";
 import { EventsAppComponent } from "./events-app.component";
 import { NavBarComponent } from "./nav/nav-bar.component";
-import { TOASTR_TOKEN, Toastr } from "./common/toastr.service";
-import { CollapsibleWellComponent } from "./common/collapsible-well.component";
+import {
+  JQ_TOKEN,
+  TOASTR_TOKEN,
+  Toastr,
+  CollapsibleWellComponent,
+  ModalTriggerDirective,
+  SimpleModalComponent
+} from "./common";
 import { appRoutes } from "./routes";
 import { CreateEventComponent } from "./events/create-event.component";
 import { Error404Component } from "./errors/404.component";
 import { AuthService } from "./user/auth.service";
 
-declare let toastr: Toastr;
+let toastr: Toastr = window["toastr"];
+let jQuery = window["$"];
 
 @NgModule({
   imports: [
@@ -43,11 +50,14 @@ declare let toastr: Toastr;
     Error404Component,
     SessionListComponent,
     CollapsibleWellComponent,
+    ModalTriggerDirective,
+    SimpleModalComponent,
     DurationPipe
   ],
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr },
+    { provide: JQ_TOKEN, useValue: jQuery },
     // next line is the same as EventRouteActivator,
     { provide: EventRouteActivator, useClass: EventRouteActivator },
     // usefull for using specific class when an interface is requested. Ex:
