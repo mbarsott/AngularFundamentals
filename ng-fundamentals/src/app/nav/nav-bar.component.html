@@ -71,6 +71,7 @@
       *ngFor="let session of foundSessions"
       [routerLink]="['/events', session.eventId]"
       class="list-group-item"
+      data-dismiss="modal"
     >
       {{ session.name }}
     </a>
