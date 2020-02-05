@@ -29,8 +29,8 @@ import { CreateEventComponent } from "./events/create-event.component";
 import { Error404Component } from "./errors/404.component";
 import { AuthService } from "./user/auth.service";
 
-let toastr: Toastr = window["toastr"];
-let jQuery = window["$"];
+const toastr: Toastr = window["toastr"];
+const jQuery = window["$"];
 
 @NgModule({
   imports: [
