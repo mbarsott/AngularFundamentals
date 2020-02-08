@@ -12,7 +12,9 @@ import {
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
+  UpvoteComponent,
+  DurationPipe,
+  VoterService
 } from "./events/index";
 import { EventsAppComponent } from "./events-app.component";
 import { NavBarComponent } from "./nav/nav-bar.component";
@@ -51,6 +53,7 @@ const jQuery = window["$"];
     SessionListComponent,
     CollapsibleWellComponent,
     ModalTriggerDirective,
+    UpvoteComponent,
     SimpleModalComponent,
     DurationPipe
   ],
@@ -67,6 +70,7 @@ const jQuery = window["$"];
     // To use a factory (with a factory function, see documentation):
     // { provide: Logger, useFactory: Logger },
     EventListResolver,
+    VoterService,
     AuthService,
     {
       provide: "canDeactivateCreateEvent",
