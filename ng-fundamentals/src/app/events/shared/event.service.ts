@@ -9,19 +9,14 @@ export class EventService {
   constructor(private http: HttpClient) {}
   getEvents(): Observable<IEvent[]> {
     return this.http
-      .get<IEvent[]>("/api/events")
+      .get<IEvent[]>("/api/events/")
       .pipe(catchError(this.handleError<IEvent[]>("getEvents", [])));
   }
 
-  private handleError<T>(operation = "opteration", result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
-  }
-
-  getEvent(id: number): IEvent {
-    return EVENTS.find(event => event.id === id);
+  getEvent(id: number): Observable<IEvent> {
+    return this.http
+      .get<IEvent>("/api/events/" + id)
+      .pipe(catchError(this.handleError<IEvent>("getEvents")));
   }
 
   saveEvent(event) {
@@ -33,6 +28,13 @@ export class EventService {
   updateEvent(event) {
     let index = EVENTS.findIndex(x => (x.id = event.id));
     EVENTS[index] = event;
+  }
+
+  private handleError<T>(operation = "opteration", result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 
   searchSessions(searchTerm: string) {

@@ -9,14 +9,14 @@ import {
   EventThumbnailComponent,
   EventService,
   EventDetailsComponent,
-  EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
   UpvoteComponent,
   DurationPipe,
   LocationValidator,
-  VoterService
+  VoterService,
+  EventResolver
 } from "./events/index";
 import { EventsAppComponent } from "./events-app.component";
 import { NavBarComponent } from "./nav/nav-bar.component";
@@ -66,7 +66,6 @@ const jQuery = window["$"];
     { provide: TOASTR_TOKEN, useValue: toastr },
     { provide: JQ_TOKEN, useValue: jQuery },
     // next line is the same as EventRouteActivator,
-    { provide: EventRouteActivator, useClass: EventRouteActivator },
     // usefull for using specific class when an interface is requested. Ex:
     // { provide: Logger, useClass: FileLogger },
     // To provide a smaller set of operations:
@@ -74,6 +73,7 @@ const jQuery = window["$"];
     // To use a factory (with a factory function, see documentation):
     // { provide: Logger, useFactory: Logger },
     EventListResolver,
+    EventResolver,
     VoterService,
     AuthService,
     {
