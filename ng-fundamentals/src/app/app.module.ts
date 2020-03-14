@@ -2,19 +2,21 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import {
   EventsListComponent,
   EventThumbnailComponent,
   EventService,
   EventDetailsComponent,
-  EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
   UpvoteComponent,
   DurationPipe,
-  VoterService
+  LocationValidator,
+  VoterService,
+  EventResolver
 } from "./events/index";
 import { EventsAppComponent } from "./events-app.component";
 import { NavBarComponent } from "./nav/nav-bar.component";
@@ -39,7 +41,8 @@ const jQuery = window["$"];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   declarations: [
     EventsAppComponent,
@@ -53,6 +56,7 @@ const jQuery = window["$"];
     SessionListComponent,
     CollapsibleWellComponent,
     ModalTriggerDirective,
+    LocationValidator,
     UpvoteComponent,
     SimpleModalComponent,
     DurationPipe
@@ -62,7 +66,6 @@ const jQuery = window["$"];
     { provide: TOASTR_TOKEN, useValue: toastr },
     { provide: JQ_TOKEN, useValue: jQuery },
     // next line is the same as EventRouteActivator,
-    { provide: EventRouteActivator, useClass: EventRouteActivator },
     // usefull for using specific class when an interface is requested. Ex:
     // { provide: Logger, useClass: FileLogger },
     // To provide a smaller set of operations:
@@ -70,6 +73,7 @@ const jQuery = window["$"];
     // To use a factory (with a factory function, see documentation):
     // { provide: Logger, useFactory: Logger },
     EventListResolver,
+    EventResolver,
     VoterService,
     AuthService,
     {
