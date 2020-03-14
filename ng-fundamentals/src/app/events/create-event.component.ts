@@ -37,24 +37,25 @@ export class CreateEventComponent {
 
   ngOnInit() {
     this.event = {
-      name: "Ng Spectacular",
-      date: "8/8/2008",
-      time: "10am",
-      price: 799.99,
-      location: {
-        address: "456 Happy St",
-        city: "Felicity",
-        country: "Angularistan"
-      },
-      onlineUrl: "http://ngSpectacular.com",
-      imageUrl: "http://ngSpectactular.com/logo.png"
+      name: ""
+      // date: "8/8/2008",
+      // time: "10am",
+      // price: 799.99,
+      // location: {
+      //   address: "456 Happy St",
+      //   city: "Felicity",
+      //   country: "Angularistan"
+      // },
+      // onlineUrl: "http://ngSpectacular.com",
+      // imageUrl: "http://ngSpectactular.com/logo.png"
     };
   }
 
   saveEvent(formValues) {
-    this.eventService.saveEvent(formValues);
-    this.isDirty = false;
-    this.router.navigate(["/events"]);
+    this.eventService.saveEvent(formValues).subscribe(() => {
+      this.isDirty = false;
+      this.router.navigate(["/events"]);
+    });
   }
 
   cancel() {
